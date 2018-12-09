@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="0dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center">
+        <ImageView
+            android:id="@+id/bgcolor1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/rounded1" />
+        <ImageView
+            android:id="@+id/bgcolor2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/rounded2" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mainclass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="'Class' in XX minutes"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/image4"
+                    android:layout_width="wrap_content"
+                    android:visibility="visible"
+                    tools:visibility="visible"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_settings_black_24dp"
+                     />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/mainclasslocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:visibility="visible"
+                tools:visibility="visible"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="Location XX minutes away" />
+
+            <ListView
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_weight="1"
+                android:layout_marginBottom ="10dp"
+                android:layout_marginTop ="10dp"
+                android:background="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/class2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#d32f2f"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:padding="10dp"
+                android:paddingLeft="10dp"
+                android:textStyle="bold"
+                android:text="'Class' at Location"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/class3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+
+                android:background="#0288d1"
+                android:visibility="gone"
+                android:paddingLeft="10dp"
+                android:textStyle="bold"
+
+                tools:visibility="visible"
+                android:text="'Class' at Location"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/class4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#388e3c"
+                android:paddingLeft="10dp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:padding="10dp"
+
+                tools:visibility="visible"
+                android:text="'Class' at Location"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+
+            <ListView
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:layout_marginBottom ="5dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_marginTop ="5dp"
+                android:background="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/class5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#f57c00"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:text="'Meal at''Dining hall:'"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/class6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#f57c00"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:text="'Food 1', 'Food 2', 'Food 4'"
+                android:paddingLeft="15dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/class7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_weight="1"
+                android:textStyle="bold"
+
+                android:background="#f57c00"
+                android:text="'Meal at''Dining hall:'"
+                android:paddingLeft="10dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/class8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#f57c00"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:text="'Food 1', 'Food 2', 'Food 4'"
+                android:paddingLeft="15dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/class9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#f57c00"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:textStyle="bold"
+
+                android:text="'Meal at''Dining hall:'"
+                android:paddingLeft="10dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/class10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#f57c00"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:text="'Food 1', 'Food 2', 'Food 4'"
+                android:paddingLeft="15dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"/>
+            <ListView
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:layout_marginBottom ="5dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_marginTop ="5dp"
+                android:background="#FFFFFF" />
+            <TextView
+                android:id="@+id/pass1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#673ab7"
+                android:visibility="gone"
+                android:padding="10dp"
+
+                android:textStyle="bold"
+
+                tools:visibility="visible"
+                android:text="Pass 1 begins: XXX"
+                android:paddingLeft="10dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/pass2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#673ab7"
+                android:padding="10dp"
+
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:text="Pass 2 begins: XXX"
+                android:paddingLeft="10dp"
+                android:textStyle="bold"
+
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/pass3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#673ab7"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:textStyle="bold"
+                android:padding="10dp"
+
+
+                android:text="Pass 3 begins: XXX"
+                android:paddingLeft="10dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
