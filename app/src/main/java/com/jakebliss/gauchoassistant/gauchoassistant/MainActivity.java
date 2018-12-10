@@ -1,13 +1,17 @@
 package com.jakebliss.gauchoassistant.gauchoassistant;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,10 +25,18 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+import ai.api.AIListener;
+import ai.api.android.AIConfiguration;
+import ai.api.android.AIService;
+import ai.api.model.AIError;
+import ai.api.model.AIResponse;
+import ai.api.model.Result;
+
+public class MainActivity extends AppCompatActivity implements AIListener {
     private TextView txvResult;
     private TextToSpeech mTTS;
     private Toolbar myToolbar;
+    AIService aiService;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -53,9 +65,47 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        int permission = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+
+            makeRequest();
+        }
+
+        final AIConfiguration config = new AIConfiguration("5a85cfe047924337b807adbec5ffbe4e",
+                AIConfiguration.SupportedLanguages.English,
+                AIConfiguration.RecognitionEngine.System);
+        aiService = AIService.getService(this, config);
+        aiService.setListener(this);
+
+    }
+    protected void makeRequest() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.RECORD_AUDIO},
+                101);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 101: {
+
+                if (grantResults.length == 0
+                        || grantResults[0] !=
+                        PackageManager.PERMISSION_GRANTED) {
 
 
+                } else {
 
+                }
+                return;
+            }
+        }
+    }
+
+    public void nlpSpeech(View v) {
+        aiService.startListening();
 
     }
 
@@ -134,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         String nickname = sharedPreferences.getString("nickname","");
 
         switch (requestCode) {
@@ -159,6 +210,56 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
+
+    }
+
+    @Override
+    public void onResult(AIResponse result) {
+            Log.v("NLP RESULT: ", result.toString());
+            Result result1 = result.getResult();
+            txvResult.setText("Query " + result1.getResolvedQuery()+" action: " + result1.getAction() + " response: " + result1.getFulfillment().getSpeech() + " params: " + result1.getParameters());
+            speak(result1.getFulfillment().getSpeech());
+
+            if(result1.getAction().equals("input.schedule"))
+            {
+                Toast.makeText(this, "input.schedule " + result1.getStringParameter("date"), Toast.LENGTH_SHORT).show();
+
+            }else if(result1.getAction().equals("input.nextclasslocation"))
+            {
+                Toast.makeText(this, "input.nextclasslocation", Toast.LENGTH_SHORT).show();
+
+            }else if(result1.getAction().equals("input.passtime"))
+            {
+                Toast.makeText(this, "input.passtime", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+
+    }
+
+    @Override
+    public void onError(AIError error) {
+
+    }
+
+    @Override
+    public void onAudioLevel(float level) {
+
+    }
+
+    @Override
+    public void onListeningStarted() {
+
+    }
+
+    @Override
+    public void onListeningCanceled() {
+
+    }
+
+    @Override
+    public void onListeningFinished() {
 
     }
 }

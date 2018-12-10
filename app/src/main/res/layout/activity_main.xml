@@ -35,4 +35,15 @@
         android:onClick="getSpeechInput"
         android:src="@drawable/tobiashollerer"/>
 
+    <ImageView
+        android:id="@+id/nlpSpeak"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="180dp"
+        android:gravity="center"
+        android:onClick="nlpSpeech"
+        android:src="@drawable/baseline_favorite_black_18dp" />
+
 </RelativeLayout>
