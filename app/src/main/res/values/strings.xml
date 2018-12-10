@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">GauchoAssistant</string>
+    <string name="app_name">My Voice To Text</string>
+
+
+    <string name="nickname_pref">Nickname</string>
+    <string name="nickname_pref_summary">Choose what the assistant calls you</string>
+
 </resources>
