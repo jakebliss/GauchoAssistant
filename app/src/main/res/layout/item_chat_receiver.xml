@@ -55,12 +55,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/grey_100"
             tools:text="Hello mate ! \ntest" />
-
-        <ImageView
-            android:id="@+id/photoImageView"
-            android:layout_width="300px"
-            android:layout_height="400px"
-            android:adjustViewBounds="true" />
     </LinearLayout>
 
     <android.support.v4.widget.Space
