@@ -140,6 +140,10 @@ public class MainActivity extends AppCompatActivity implements AIListener {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String assistantSpeed = sharedPreferences.getString("assistant_speed","Normal");
+        String nickname = sharedPreferences.getString("nickname","");
+
+        //text += nickname;
+
 
         float pitch = 0.5f;
         float speed = 0.5f;
@@ -215,6 +219,11 @@ public class MainActivity extends AppCompatActivity implements AIListener {
 
     @Override
     public void onResult(AIResponse result) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String nickname = sharedPreferences.getString("nickname","");
+
+
             Log.v("NLP RESULT: ", result.toString());
             Result result1 = result.getResult();
             txvResult.setText("Query " + result1.getResolvedQuery()+" action: " + result1.getAction() + " response: " + result1.getFulfillment().getSpeech() + " params: " + result1.getParameters());
@@ -231,6 +240,14 @@ public class MainActivity extends AppCompatActivity implements AIListener {
             }else if(result1.getAction().equals("input.passtime"))
             {
                 Toast.makeText(this, "input.passtime", Toast.LENGTH_SHORT).show();
+
+            }else if(result1.getAction().equals("input.meal"))
+            {
+                Toast.makeText(this, "input.meal:Commons is " + result1.getStringParameter("DiningCommons") + " meal is " + result1.getStringParameter("MealType"), Toast.LENGTH_SHORT).show();
+
+            }else if(result1.getAction().equals("input.courselist"))
+            {
+                Toast.makeText(this, "input.courselist: Course List For " + result1.getStringParameter("Quarter") + " quarter", Toast.LENGTH_SHORT).show();
 
             }
 
