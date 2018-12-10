@@ -3,11 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <CheckBoxPreference
-        android:key="nickname_pref"
-        android:title="@string/nickname_pref"
-        android:summary="@string/nickname_pref_summary"
-        android:defaultValue="true"/>
+
+
+        <PreferenceCategory
+            android:title="Basic Settings"
+
+            >
+
+            <CheckBoxPreference
+                android:key="Developer Mode"
+                android:title="Developer Mode"
+                android:summary="Trigger Dev mode"
+                android:defaultValue="false"/>
+
+
+            <EditTextPreference
+                android:title="@string/nickname_pref"
+                android:summary="@string/nickname_pref_summary"
+                android:defaultValue="LoggedInUsername"
+
+                />
+
+
+        </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Widget Settings"
+
+        >
+    <ListPreference
+                android:key="pref_sync_connection_type"
+                android:title="@string/pref_minimizedWidget"
+                android:entries="@array/pref_minimizedWidget_entries"
+                android:entryValues="@array/pref_minimizedWidget_values"
+                android:defaultValue="@string/pref_minimizedWidget_default_value"
+                android:summary="Change what information shows up in minimized widget"
+                android:dialogTitle="@string/pref_minimizedWidget_dialog_title"
+                />
+    </PreferenceCategory>
+
+
+
+
+
+
 
 
 

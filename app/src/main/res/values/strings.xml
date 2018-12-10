@@ -5,4 +5,21 @@
     <string name="nickname_pref">Nickname</string>
     <string name="nickname_pref_summary">Choose what the assistant calls you</string>
 
+    <string name="pref_minimizedWidget">Minimized Widget Settings</string>
+    <string name="pref_minimizedWidget_dialog_title">Select data that shows in minimized widget</string>
+    <string name="pref_minimizedWidget_default_value">Next Class</string>
+
+    <string-array name="pref_minimizedWidget_entries">
+        <item>Next Class</item>
+        <item>Next Meal At DC</item>
+        <item>Pass Time</item>
+
+    </string-array>
+
+    <string-array name="pref_minimizedWidget_values">
+        <item>Next Class</item>
+        <item>Next Meal At DC</item>
+        <item>Pass Time</item>
+    </string-array>
+
 </resources>
