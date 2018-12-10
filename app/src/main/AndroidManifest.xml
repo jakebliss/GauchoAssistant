@@ -16,7 +16,7 @@
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/appwidgetproviderinfo" />
         </receiver>
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".chat.ChatActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

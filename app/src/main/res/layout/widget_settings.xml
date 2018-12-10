@@ -31,7 +31,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="25dp"
                 android:padding="10dp"
-                android:text="General" />
+                android:textAlignment="center"
+                android:text="Widget" />
 
             <Switch
                 android:id="@+id/switchSettings"
