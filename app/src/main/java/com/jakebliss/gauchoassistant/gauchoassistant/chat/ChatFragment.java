@@ -111,7 +111,8 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                     mChatRecyclerAdapter = new ChatRecyclerAdapter(new ArrayList<ChatMessage>());
                     mRecyclerViewChat.setAdapter(mChatRecyclerAdapter);
                 }
-                mChatRecyclerAdapter.add(makeNewChatMessage(mETxtMessage.getText().toString()));
+                mChatRecyclerAdapter.add(makeNewChatMessageUser(mETxtMessage.getText().toString()));
+                mChatRecyclerAdapter.add(makeNewChatMessageAssistant(mETxtMessage.getText().toString()));
                 mRecyclerViewChat.smoothScrollToPosition(mChatRecyclerAdapter.getItemCount() - 1);
                 mETxtMessage.setText("");
             }
@@ -127,8 +128,12 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private ChatMessage makeNewChatMessage(String message) {
+    private ChatMessage makeNewChatMessageUser(String message) {
         ChatMessage chatMessage = new ChatMessage(message, "typeUserChat");
+        return chatMessage;
+    }
+    private ChatMessage makeNewChatMessageAssistant(String message) {
+        ChatMessage chatMessage = new ChatMessage(message, "typeAssistantChat");
         return chatMessage;
     }
     @Override
