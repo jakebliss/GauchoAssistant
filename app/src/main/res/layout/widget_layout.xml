@@ -125,21 +125,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/class4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#388e3c"
-                android:paddingLeft="10dp"
-                android:textStyle="bold"
-                android:visibility="gone"
-                android:padding="10dp"
-
-                tools:visibility="visible"
-                android:text="'Class' at Location"
-                android:textColor="#FFFFFF"
-                android:textSize="15dp" />
 
 
             <TextView

@@ -86,7 +86,7 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
         if(maxHeight > 90 && maxHeight < 350){
             views.setViewVisibility(R.id.class2, View.VISIBLE);
             views.setViewVisibility(R.id.class3, View.VISIBLE);
-            views.setViewVisibility(R.id.class4, View.VISIBLE);
+
             views.setViewVisibility(R.id.divider, View.VISIBLE);
 
             views.setViewVisibility(R.id.class5, View.GONE);
@@ -107,7 +107,7 @@ public class ExampleAppWidgetProvider extends AppWidgetProvider {
         else{
             views.setViewVisibility(R.id.class2, View.GONE);
             views.setViewVisibility(R.id.class3, View.GONE);
-            views.setViewVisibility(R.id.class4, View.GONE);
+
             views.setViewVisibility(R.id.divider, View.GONE);
             views.setViewVisibility(R.id.class5, View.GONE);
             views.setViewVisibility(R.id.class6, View.GONE);

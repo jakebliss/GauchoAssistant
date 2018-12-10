@@ -34,6 +34,8 @@ import java.io.OutputStreamWriter;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static android.view.View.GONE;
+
 public class WidgetActivity extends AppCompatActivity {
     private String saved_settings = new String();
     private Boolean settings = true;
@@ -47,6 +49,7 @@ public class WidgetActivity extends AppCompatActivity {
     private Boolean background = true;
     private Boolean dark_background = true;
     private Boolean darkfont1 = true;
+    private String schedule = new String("");
     private String init_data = new String("settings:1,classes:1,menus:1,passtimes:1,divider1:1,darkfont:0,fontsize:1,colors:1,background:1,dark_background:1,darkfont1:0");
 
     @Override
@@ -106,6 +109,82 @@ public class WidgetActivity extends AppCompatActivity {
 
         //Read in current widget settings
         saved_settings = readSettings(context);
+        schedule = readClasses(context);
+        String class1 = new String();
+        String class2 = new String();
+        String class3 = new String();
+        String class4= new String();
+        int first = schedule.indexOf("****");
+        int second = schedule.indexOf("****", first + 1);
+        int third = schedule.indexOf("****", second + 1);
+        int fourth = schedule.indexOf("****", third + 1);
+        Log.d("omer", schedule);
+        if(schedule.contains("Title0")){
+            class1 = schedule.substring(schedule.indexOf("Title0"), schedule.indexOf("****0"));
+            Log.d("omer", class1);
+
+        }
+        if(schedule.contains("Title1")){
+            class2 = schedule.substring(schedule.indexOf("Title1"), schedule.indexOf("****1"));
+            Log.d("omer", class2);
+        }
+        if(schedule.contains("Title2")){
+            class3 = schedule.substring(schedule.indexOf("Title2"), schedule.indexOf("****2"));
+            Log.d("omer", class3);
+        }
+        if(schedule.contains("Title3")){
+            class4 = schedule.substring(schedule.indexOf("Title3"), schedule.indexOf("****3"));
+            Log.d("omer", class4);
+        }
+
+        String ClassHeading = new String(class1.substring(6,16) + " at " + class1.substring(class1.indexOf("Time") + 4, class1.indexOf("Time") + 11));
+        Log.d("omer", ClassHeading);
+        String ClassLocation = new String(class1.substring(class1.indexOf("Location") + 8));
+        ClassLocation = ClassLocation.substring(0, ClassLocation.length() -1);
+        String Class2 = new String();
+        String Class3 = new String();
+        String Class4 = new String();
+        String Loc2 = new String();
+        String Loc3 = new String();
+        String Loc4 = new String();
+        Log.d("omer", ClassLocation);
+        if(class2.length() > 0){
+            Class2 = new String(class2.substring(6, 16));
+            Loc2 = new String( class2.substring(class2.indexOf("Time") + 4, class2.indexOf("Time") + 11));
+            Log.d("omer", Class2 + Loc2);
+
+        }
+        if(class3.length() > 0){
+            Class3 = new String(class3.substring(6, 16));
+            Loc3 = new String( class3.substring(class3.indexOf("Time") + 4, class3.indexOf("Time") + 11));
+            Log.d("omer", Class3 + Loc3);
+        }
+        if(class4.length() > 0){
+            Class4 = new String(class4.substring(6, 16));
+            Loc4 = new String( class4.substring(class4.indexOf("Time") + 4, class4.indexOf("Time") + 11));
+            Log.d("omer", Class4 + Loc4);
+        }
+
+        remoteViews.setTextViewText(R.id.mainclass, ClassHeading);
+        remoteViews.setTextViewText(R.id.mainclasslocation, ClassLocation);
+        if(Class2.length() > 0){
+            Log.d("omer", "here");
+            remoteViews.setTextViewText(R.id.class2, Class2 + " at " + Loc2);
+        }else{
+            remoteViews.setViewVisibility(R.id.class2, View.GONE);
+        }
+        if(Class3.length() > 0){
+            remoteViews.setTextViewText(R.id.class3, Class3 + " at " + Loc3);
+        }else{
+            remoteViews.setViewVisibility(R.id.class3, View.GONE);
+        }
+
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        ComponentName thisWidget = new ComponentName(context, ExampleAppWidgetProvider.class);
+        appWidgetManager.updateAppWidget(thisWidget, remoteViews);
+
+
         if(saved_settings.length() <= 0){
             writeSettings(init_data, getApplicationContext());
         }
@@ -266,7 +345,7 @@ public class WidgetActivity extends AppCompatActivity {
                     remoteViews.setViewVisibility(R.id.mainclasslocation, View.VISIBLE);
                     remoteViews.setViewVisibility(R.id.class2, View.VISIBLE);
                     remoteViews.setViewVisibility(R.id.class3, View.VISIBLE);
-                    remoteViews.setViewVisibility(R.id.class4, View.VISIBLE);
+
                     remoteViews.setViewVisibility(R.id.divider, View.VISIBLE);
                     classes = true;
                     String new_data = saved_settings.replace("classes:0", "classes:1");
@@ -275,12 +354,12 @@ public class WidgetActivity extends AppCompatActivity {
 
 
                 } else {
-                    remoteViews.setViewVisibility(R.id.mainclass, View.GONE);
-                    remoteViews.setViewVisibility(R.id.mainclasslocation, View.GONE);
-                    remoteViews.setViewVisibility(R.id.class2, View.GONE);
-                    remoteViews.setViewVisibility(R.id.class3, View.GONE);
-                    remoteViews.setViewVisibility(R.id.class4, View.GONE);
-                    remoteViews.setViewVisibility(R.id.divider, View.GONE);
+                    remoteViews.setViewVisibility(R.id.mainclass, GONE);
+                    remoteViews.setViewVisibility(R.id.mainclasslocation, GONE);
+                    remoteViews.setViewVisibility(R.id.class2, GONE);
+                    remoteViews.setViewVisibility(R.id.class3, GONE);
+
+                    remoteViews.setViewVisibility(R.id.divider, GONE);
                     classes = false;
                     String new_data = saved_settings.replace("classes:1", "classes:0");
                     saved_settings = new_data;
@@ -311,8 +390,8 @@ public class WidgetActivity extends AppCompatActivity {
                     writeSettings(new_data, getApplicationContext());
 
                 } else {
-                    remoteViews.setViewVisibility(R.id.class5, View.GONE);
-                    remoteViews.setViewVisibility(R.id.class6, View.GONE);
+                    remoteViews.setViewVisibility(R.id.class5, GONE);
+                    remoteViews.setViewVisibility(R.id.class6, GONE);
 
                     menus = false;
                     String new_data = saved_settings.replace("menus:1", "menus:0");
@@ -343,9 +422,9 @@ public class WidgetActivity extends AppCompatActivity {
                     writeSettings(new_data, getApplicationContext());
 
                 } else {
-                    remoteViews.setViewVisibility(R.id.pass1, View.GONE);
-                    remoteViews.setViewVisibility(R.id.pass2, View.GONE);
-                    remoteViews.setViewVisibility(R.id.pass3, View.GONE);
+                    remoteViews.setViewVisibility(R.id.pass1, GONE);
+                    remoteViews.setViewVisibility(R.id.pass2, GONE);
+                    remoteViews.setViewVisibility(R.id.pass3, GONE);
 
                     passtimes = false;
                     String new_data = saved_settings.replace("passtimes:1", "passtimes:0");
@@ -369,10 +448,10 @@ public class WidgetActivity extends AppCompatActivity {
                     int color = 0;
                     if(colors){
                         remoteViews.setViewVisibility(R.id.bgcolor1, View.VISIBLE);
-                        remoteViews.setViewVisibility(R.id.bgcolor2, View.GONE);
+                        remoteViews.setViewVisibility(R.id.bgcolor2, GONE);
                     }else{
                         remoteViews.setViewVisibility(R.id.bgcolor2, View.VISIBLE);
-                        remoteViews.setViewVisibility(R.id.bgcolor1, View.GONE);
+                        remoteViews.setViewVisibility(R.id.bgcolor1, GONE);
                     }
                     background = true;
 
@@ -381,8 +460,8 @@ public class WidgetActivity extends AppCompatActivity {
                     writeSettings(new_data, getApplicationContext());
 
                 } else {
-                    remoteViews.setViewVisibility(R.id.bgcolor1, View.GONE);
-                    remoteViews.setViewVisibility(R.id.bgcolor2, View.GONE);
+                    remoteViews.setViewVisibility(R.id.bgcolor1, GONE);
+                    remoteViews.setViewVisibility(R.id.bgcolor2, GONE);
                     String new_data = saved_settings.replace("background:1", "background:0");
                     saved_settings = new_data;
                     writeSettings(new_data, getApplicationContext());
@@ -402,14 +481,14 @@ public class WidgetActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     remoteViews.setViewVisibility(R.id.bgcolor1, View.VISIBLE);
-                    remoteViews.setViewVisibility(R.id.bgcolor2, View.GONE);
+                    remoteViews.setViewVisibility(R.id.bgcolor2, GONE);
                     dark_background = true;
                     String new_data = saved_settings.replace("dark_background:0", "dark_background:1");
                     saved_settings = new_data;
                     writeSettings(new_data, getApplicationContext());
 
                 } else {
-                    remoteViews.setViewVisibility(R.id.bgcolor1, View.GONE);
+                    remoteViews.setViewVisibility(R.id.bgcolor1, GONE);
                     remoteViews.setViewVisibility(R.id.bgcolor2, View.VISIBLE);
                     String new_data = saved_settings.replace("dark_background:1", "dark_background:0");
                     saved_settings = new_data;
@@ -417,8 +496,8 @@ public class WidgetActivity extends AppCompatActivity {
 
                 }
                 if(!background){
-                    remoteViews.setViewVisibility(R.id.bgcolor1, View.GONE);
-                    remoteViews.setViewVisibility(R.id.bgcolor2, View.GONE);
+                    remoteViews.setViewVisibility(R.id.bgcolor1, GONE);
+                    remoteViews.setViewVisibility(R.id.bgcolor2, GONE);
                 }
 
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -435,7 +514,7 @@ public class WidgetActivity extends AppCompatActivity {
                 if (isChecked) {
                     remoteViews.setInt(R.id.class2, "setBackgroundColor", Color.parseColor("#00000000"));
                     remoteViews.setInt(R.id.class3, "setBackgroundColor", Color.parseColor("#00000000"));
-                    remoteViews.setInt(R.id.class4, "setBackgroundColor", Color.parseColor("#00000000"));
+
                     remoteViews.setInt(R.id.class5, "setBackgroundColor", Color.parseColor("#00000000"));
                     remoteViews.setInt(R.id.class6, "setBackgroundColor", Color.parseColor("#00000000"));
                     remoteViews.setInt(R.id.pass1, "setBackgroundColor", Color.parseColor("#00000000"));
@@ -451,7 +530,7 @@ public class WidgetActivity extends AppCompatActivity {
                 } else {
                     remoteViews.setInt(R.id.class2, "setBackgroundColor", Color.parseColor("#d32f2f"));
                     remoteViews.setInt(R.id.class3, "setBackgroundColor", Color.parseColor("#0288d1"));
-                    remoteViews.setInt(R.id.class4, "setBackgroundColor", Color.parseColor("#388e3c"));
+
                     remoteViews.setInt(R.id.class5, "setBackgroundColor", Color.parseColor("#f57c00"));
                     remoteViews.setInt(R.id.class6, "setBackgroundColor", Color.parseColor("#f57c00"));
                     remoteViews.setInt(R.id.pass1, "setBackgroundColor", Color.parseColor("#673ab7"));
@@ -479,7 +558,7 @@ public class WidgetActivity extends AppCompatActivity {
                 if (isChecked) {
                     remoteViews.setTextColor(R.id.class2, Color.BLACK);
                     remoteViews.setTextColor(R.id.class3, Color.BLACK);
-                    remoteViews.setTextColor(R.id.class4, Color.BLACK);
+
                     remoteViews.setTextColor(R.id.class5, Color.BLACK);
                     remoteViews.setTextColor(R.id.class6, Color.BLACK);
                     remoteViews.setTextColor(R.id.pass1, Color.BLACK);
@@ -493,7 +572,7 @@ public class WidgetActivity extends AppCompatActivity {
                 } else {
                     remoteViews.setTextColor(R.id.class2, Color.WHITE);
                     remoteViews.setTextColor(R.id.class3, Color.WHITE);
-                    remoteViews.setTextColor(R.id.class4, Color.WHITE);
+
                     remoteViews.setTextColor(R.id.class5, Color.WHITE);
                     remoteViews.setTextColor(R.id.class6, Color.WHITE);
                     remoteViews.setTextColor(R.id.pass1, Color.WHITE);
@@ -596,6 +675,35 @@ public class WidgetActivity extends AppCompatActivity {
 
         try {
             InputStream inputStream = context.openFileInput("widget_settings.txt");
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
+    }
+    private String readClasses(Context context) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput("my_schedule.txt");
 
             if ( inputStream != null ) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);

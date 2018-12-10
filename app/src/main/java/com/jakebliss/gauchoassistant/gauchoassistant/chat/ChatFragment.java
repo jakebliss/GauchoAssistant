@@ -44,6 +44,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -86,6 +88,8 @@ public class ChatFragment extends Fragment implements View.OnClickListener, AILi
     private static final int RC_PHOTO_PICKER = 2;
 
     private Button mSendButton;
+    private String schedule = new String("");
+
     private TextView txvResult;
     private TextToSpeech mTTS;
     private Toolbar myToolbar;
@@ -100,6 +104,13 @@ public class ChatFragment extends Fragment implements View.OnClickListener, AILi
     private ImageView mSettingsButton;
     private ImageView mVoiceButton;
     private Context context;
+    String Class2 = new String();
+    String Class3 = new String();
+    String Class4 = new String();
+    String Loc2 = new String();
+    String Loc3 = new String();
+    String ClassHeading = new String();
+    String Loc4 = new String();
 
 
 
@@ -123,6 +134,56 @@ public class ChatFragment extends Fragment implements View.OnClickListener, AILi
         Log.d("pap", strDate);
         getResponseData("https://api.ucsb.edu/academics/quartercalendar/v1/quarters/current", quarter_calendar_data);
         getResponseData(strDate, menu_data);
+        schedule = readClasses(getContext());
+        String class1 = new String();
+        String class2 = new String();
+        String class3 = new String();
+        String class4= new String();
+        int first = schedule.indexOf("****");
+        int second = schedule.indexOf("****", first + 1);
+        int third = schedule.indexOf("****", second + 1);
+        int fourth = schedule.indexOf("****", third + 1);
+        Log.d("omer", schedule);
+        if(schedule.contains("Title0")){
+            class1 = schedule.substring(schedule.indexOf("Title0"), schedule.indexOf("****0"));
+            Log.d("omer", class1);
+
+        }
+        if(schedule.contains("Title1")){
+            class2 = schedule.substring(schedule.indexOf("Title1"), schedule.indexOf("****1"));
+            Log.d("omer", class2);
+        }
+        if(schedule.contains("Title2")){
+            class3 = schedule.substring(schedule.indexOf("Title2"), schedule.indexOf("****2"));
+            Log.d("omer", class3);
+        }
+        if(schedule.contains("Title3")){
+            class4 = schedule.substring(schedule.indexOf("Title3"), schedule.indexOf("****3"));
+            Log.d("omer", class4);
+        }
+
+        ClassHeading = new String(class1.substring(6,16) + " at " + class1.substring(class1.indexOf("Time") + 4, class1.indexOf("Time") + 11));
+        Log.d("omer", ClassHeading);
+        String ClassLocation = new String(class1.substring(class1.indexOf("Location") + 8));
+        ClassLocation = ClassLocation.substring(0, ClassLocation.length() -1);
+
+        Log.d("omer", ClassLocation);
+        if(class2.length() > 0){
+            Class2 = new String(class2.substring(6, 16));
+            Loc2 = new String( class2.substring(class2.indexOf("Time") + 4, class2.indexOf("Time") + 11));
+            Log.d("omer", Class2 + Loc2);
+
+        }
+        if(class3.length() > 0){
+            Class3 = new String(class3.substring(6, 16));
+            Loc3 = new String( class3.substring(class3.indexOf("Time") + 4, class3.indexOf("Time") + 11));
+            Log.d("omer", Class3 + Loc3);
+        }
+        if(class4.length() > 0){
+            Class4 = new String(class4.substring(6, 16));
+            Loc4 = new String( class4.substring(class4.indexOf("Time") + 4, class4.indexOf("Time") + 11));
+            Log.d("omer", Class4 + Loc4);
+        }
         mTTS = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -265,9 +326,10 @@ public class ChatFragment extends Fragment implements View.OnClickListener, AILi
 
                     //speak(result.get(0));
 
-                    if(result.get(0).contains("schedule") || result.get(0).contains("what is my schedule") ||  (result.get(0).contains("get") &&  result.get(0).contains("schedule")))
+                    if(result.get(0).contains("schedule") || result.get(0).contains("what is my schedule") ||  (result.get(0).contains("classes") &&  result.get(0).contains("class")))
                     {
-                        speak("retrieving schedule information for you friend. Your schedule is");
+                        String response = ClassHeading + "." + "Then you have " + Class2 + " at " + Loc2 + "." + Class3 + " at " + Loc3 + ".";
+                        speak("Retrieving schedule information for you friend. Your schedule is." + response);
                         Toast.makeText(getContext(), "retrieving schedule information", Toast.LENGTH_SHORT).show();
 
                     }
@@ -347,8 +409,9 @@ public class ChatFragment extends Fragment implements View.OnClickListener, AILi
                 if(mETxtMessage.getText().toString().contains("menu")){
                     response = "Here is the dinner menu at Carrillo today \n" + menu_items.get(0) + '\n' + menu_items.get(1) + '\n' + menu_items.get(2) + '\n' + menu_items.get(3) + '\n' + menu_items.get(4) + '\n' + "Plus much more.";
                 }
-                else if(mETxtMessage.getText().toString().contains("schedule")){
-
+                else if(mETxtMessage.getText().toString().contains("schedule") || mETxtMessage.getText().toString().contains("class")){
+                    response = ClassHeading + "." + "Then you have " + Class2 + " at " + Loc2 + "." + Class3 + " at " + Loc3 + ".";
+                    response = "Retrieving schedule information for you friend. Your schedule is." + response;
                 }
                 else if(mETxtMessage.getText().toString().contains("pass")){
                     response = "Here are the pass times for this quarter \n" + quarter_info.get(0) + '\n' + quarter_info.get(1) + '\n' + quarter_info.get(2);
@@ -500,6 +563,35 @@ public class ChatFragment extends Fragment implements View.OnClickListener, AILi
     private ChatMessage makeNewChatMessageAssistant(String message) {
         ChatMessage chatMessage = new ChatMessage(message, "typeAssistantChat");
         return chatMessage;
+    }
+    private String readClasses(Context context) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput("my_schedule.txt");
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
     }
     @Override
     public void onClick(View v) {

@@ -109,7 +109,7 @@
                 android:backgroundTint="#ffffff"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:text="password"
+                android:text="Cosmothedog666"
                 android:textColor="#ffffff" />
 
             <Button

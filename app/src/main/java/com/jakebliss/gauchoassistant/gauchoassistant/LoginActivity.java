@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jakebliss.gauchoassistant.gauchoassistant.chat.ChatActivity;
@@ -22,6 +23,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class LoginActivity extends AppCompatActivity {
 
     private Button mLoginButton;
+    private EditText un;
+    private EditText pw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         setContentView(R.layout.activity_login);
+        un = findViewById(R.id.editText);
+        pw = findViewById(R.id.editText2);
         Typeface tf = Typeface.createFromAsset(getAssets(),"product_sans_regular.ttf");
         TextView textfield = findViewById(R.id.general2);
         textfield.setTypeface(tf,Typeface.NORMAL);
@@ -48,10 +53,16 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Log.d("settings", "clicked");
+                String username = un.getText().toString();
+                String password = pw.getText().toString();
+                GoldScraper gs = new GoldScraper(getApplicationContext(),username, password );
+                (gs).execute();
                 Intent myIntent = new Intent(LoginActivity.this, ChatActivity.class);
                 LoginActivity.this.startActivity(myIntent);
             }
         });
+
     }
 }
