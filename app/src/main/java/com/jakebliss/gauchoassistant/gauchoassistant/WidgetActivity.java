@@ -303,11 +303,8 @@ public class WidgetActivity extends AppCompatActivity {
                     Log.d("Log", "Checked");
                     remoteViews.setViewVisibility(R.id.class5, View.VISIBLE);
                     remoteViews.setViewVisibility(R.id.class6, View.VISIBLE);
-                    remoteViews.setViewVisibility(R.id.class7, View.VISIBLE);
-                    remoteViews.setViewVisibility(R.id.class8, View.VISIBLE);
-                    remoteViews.setViewVisibility(R.id.class9, View.VISIBLE);
-                    remoteViews.setViewVisibility(R.id.class10, View.VISIBLE);
-                    remoteViews.setViewVisibility(R.id.divider1, View.VISIBLE);
+
+
                     menus = true;
                     String new_data = saved_settings.replace("menus:0", "menus:1");
                     saved_settings = new_data;
@@ -316,11 +313,7 @@ public class WidgetActivity extends AppCompatActivity {
                 } else {
                     remoteViews.setViewVisibility(R.id.class5, View.GONE);
                     remoteViews.setViewVisibility(R.id.class6, View.GONE);
-                    remoteViews.setViewVisibility(R.id.class7, View.GONE);
-                    remoteViews.setViewVisibility(R.id.class8, View.GONE);
-                    remoteViews.setViewVisibility(R.id.class9, View.GONE);
-                    remoteViews.setViewVisibility(R.id.class10, View.GONE);
-                    remoteViews.setViewVisibility(R.id.divider1, View.GONE);
+
                     menus = false;
                     String new_data = saved_settings.replace("menus:1", "menus:0");
                     saved_settings = new_data;
@@ -445,10 +438,6 @@ public class WidgetActivity extends AppCompatActivity {
                     remoteViews.setInt(R.id.class4, "setBackgroundColor", Color.parseColor("#00000000"));
                     remoteViews.setInt(R.id.class5, "setBackgroundColor", Color.parseColor("#00000000"));
                     remoteViews.setInt(R.id.class6, "setBackgroundColor", Color.parseColor("#00000000"));
-                    remoteViews.setInt(R.id.class7, "setBackgroundColor", Color.parseColor("#00000000"));
-                    remoteViews.setInt(R.id.class8, "setBackgroundColor", Color.parseColor("#00000000"));
-                    remoteViews.setInt(R.id.class9, "setBackgroundColor", Color.parseColor("#00000000"));
-                    remoteViews.setInt(R.id.class10, "setBackgroundColor", Color.parseColor("#00000000"));
                     remoteViews.setInt(R.id.pass1, "setBackgroundColor", Color.parseColor("#00000000"));
                     remoteViews.setInt(R.id.pass2, "setBackgroundColor", Color.parseColor("#00000000"));
                     remoteViews.setInt(R.id.pass3, "setBackgroundColor", Color.parseColor("#00000000"));
@@ -465,10 +454,6 @@ public class WidgetActivity extends AppCompatActivity {
                     remoteViews.setInt(R.id.class4, "setBackgroundColor", Color.parseColor("#388e3c"));
                     remoteViews.setInt(R.id.class5, "setBackgroundColor", Color.parseColor("#f57c00"));
                     remoteViews.setInt(R.id.class6, "setBackgroundColor", Color.parseColor("#f57c00"));
-                    remoteViews.setInt(R.id.class7, "setBackgroundColor", Color.parseColor("#f57c00"));
-                    remoteViews.setInt(R.id.class8, "setBackgroundColor", Color.parseColor("#f57c00"));
-                    remoteViews.setInt(R.id.class9, "setBackgroundColor", Color.parseColor("#f57c00"));
-                    remoteViews.setInt(R.id.class10, "setBackgroundColor", Color.parseColor("#f57c00"));
                     remoteViews.setInt(R.id.pass1, "setBackgroundColor", Color.parseColor("#673ab7"));
                     remoteViews.setInt(R.id.pass2, "setBackgroundColor", Color.parseColor("#673ab7"));
                     remoteViews.setInt(R.id.pass3, "setBackgroundColor", Color.parseColor("#673ab7"));
@@ -497,10 +482,6 @@ public class WidgetActivity extends AppCompatActivity {
                     remoteViews.setTextColor(R.id.class4, Color.BLACK);
                     remoteViews.setTextColor(R.id.class5, Color.BLACK);
                     remoteViews.setTextColor(R.id.class6, Color.BLACK);
-                    remoteViews.setTextColor(R.id.class7, Color.BLACK);
-                    remoteViews.setTextColor(R.id.class8, Color.BLACK);
-                    remoteViews.setTextColor(R.id.class9, Color.BLACK);
-                    remoteViews.setTextColor(R.id.class10, Color.BLACK);
                     remoteViews.setTextColor(R.id.pass1, Color.BLACK);
                     remoteViews.setTextColor(R.id.pass2, Color.BLACK);
                     remoteViews.setTextColor(R.id.pass3, Color.BLACK);
@@ -515,10 +496,6 @@ public class WidgetActivity extends AppCompatActivity {
                     remoteViews.setTextColor(R.id.class4, Color.WHITE);
                     remoteViews.setTextColor(R.id.class5, Color.WHITE);
                     remoteViews.setTextColor(R.id.class6, Color.WHITE);
-                    remoteViews.setTextColor(R.id.class7, Color.WHITE);
-                    remoteViews.setTextColor(R.id.class8, Color.WHITE);
-                    remoteViews.setTextColor(R.id.class9, Color.WHITE);
-                    remoteViews.setTextColor(R.id.class10, Color.WHITE);
                     remoteViews.setTextColor(R.id.pass1, Color.WHITE);
                     remoteViews.setTextColor(R.id.pass2, Color.WHITE);
                     remoteViews.setTextColor(R.id.pass3, Color.WHITE);

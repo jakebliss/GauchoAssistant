@@ -7,16 +7,22 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jakebliss.gauchoassistant.gauchoassistant.chat.ChatActivity;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private Button mLoginButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,5 +44,14 @@ public class LoginActivity extends AppCompatActivity {
         textfield.setTypeface(tf,Typeface.NORMAL);
         textfield = findViewById(R.id.button);
         textfield.setTypeface(tf,Typeface.NORMAL);
+        mLoginButton = findViewById(R.id.button);
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("settings", "clicked");
+                Intent myIntent = new Intent(LoginActivity.this, ChatActivity.class);
+                LoginActivity.this.startActivity(myIntent);
+            }
+        });
     }
 }
