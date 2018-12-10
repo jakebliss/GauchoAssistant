@@ -1,7 +1,9 @@
 package com.jakebliss.gauchoassistant.gauchoassistant;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
@@ -85,8 +87,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void speak(String text) {
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String assistantSpeed = sharedPreferences.getString("assistant_speed","Normal");
+
         float pitch = 0.5f;
         float speed = 0.5f;
+
+
+        if(assistantSpeed.equals("Slow"))
+        {
+             pitch = 0.5f;
+             speed = 0.1f;
+        }else if (assistantSpeed.equals("Normal"))
+        {
+            pitch = 0.5f;
+            speed = 0.5f;
+        }else if (assistantSpeed.equals("Fast"))
+        {
+            pitch = 0.5f;
+            speed = 1f;
+        }
+
 
         mTTS.setPitch(pitch);
         mTTS.setSpeechRate(speed);
@@ -111,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String nickname = sharedPreferences.getString("nickname","");
+
         switch (requestCode) {
             case 10:
                 if (resultCode == RESULT_OK && data != null) {
@@ -122,14 +147,14 @@ public class MainActivity extends AppCompatActivity {
 
                     if(result.get(0).contains("what's my schedule") || result.get(0).contains("what is my schedule") ||  (result.get(0).contains("get") &&  result.get(0).contains("schedule")))
                     {
-                        speak("retrieving schedule information");
+                        speak("retrieving schedule information for you " + nickname);
                         Toast.makeText(this, "retrieving schedule information", Toast.LENGTH_SHORT).show();
 
                     }
                     if(result.get(0).contains("where's my next class") || result.get(0).contains("where is my next class")|| (result.get(0).contains("get") &&  result.get(0).contains("next class")))
                     {
                         speak("retrieving class location");
-                        Toast.makeText(this, "retrieving class location", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "retrieving class location for you, " + nickname, Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;

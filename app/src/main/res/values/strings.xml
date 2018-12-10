@@ -22,4 +22,19 @@
         <item>Pass Time</item>
     </string-array>
 
+
+
+    <string-array name="pref_assistantspeed_entries">
+        <item>Slow</item>
+        <item>Normal</item>
+        <item>Fast</item>
+
+    </string-array>
+
+    <string-array name="pref_assistantspeed_values">
+        <item>Slow</item>
+        <item>Normal</item>
+        <item>Fast</item>
+    </string-array>
+
 </resources>
