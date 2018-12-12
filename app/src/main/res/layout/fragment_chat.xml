@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="#232323"
+    android:padding="20dp"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_settings_white_24dp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textViewG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:padding="10dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:text="GauchoAssistant" />
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_keyboard_voice_black_24dp"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_chat"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/topbar"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/bgcolor2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/rounded3" />
+
+            <EditText
+                android:id="@+id/edit_text_message"
+                android:text="Where is my next class?"
+                android:textSize="15dp"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@null"
+                android:layout_height="30dp"
+                android:textColor="#ffffff"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" />
+
+
+
+
+
+        </FrameLayout>
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="bottom"
+            android:enabled="false"
+            android:background="@drawable/send"
+            android:visibility="gone"/>
+        <Button
+            android:id="@+id/sendButtonCancel"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="bottom"
+            android:enabled="false"
+            android:background="@drawable/send_copy"/>
+    </LinearLayout>
+</RelativeLayout>

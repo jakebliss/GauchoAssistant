@@ -5,15 +5,125 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#232323"
+    android:layout_gravity="center"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/bgcolor1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/home" />
+
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:shadowColor="#7F000000"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="0.01"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="GauchoAssistant"
+        android:textSize="30dp"
+        android:textStyle="italic"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/bgcolor2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/rounded4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/general2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="Log in"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ffffff"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="username"
+                android:textColor="#ffffff" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#ffffff"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:text="Cosmothedog666"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/yellow_800"
+                android:text="Login"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
 
 </android.support.constraint.ConstraintLayout>

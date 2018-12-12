@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#232323"
+
+
+    tools:context="com.jakebliss.gauchoassistant.gauchoassistant.chat.ChatActivity">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:text="GauchoAssistant" />
+
+    <FrameLayout
+        android:id="@+id/frame_layout_content_chat"
+        android:layout_width="match_parent"
+        android:background="#232323"
+        android:layout_height="fill_parent">
+
+
+    </FrameLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

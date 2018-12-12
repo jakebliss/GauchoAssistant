@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:orientation="vertical"
+    android:background="#232323"
+    android:gravity="center"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/general"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:text="Widget" />
+
+            <Switch
+                android:id="@+id/switchSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="Show settings icon" />
+            <Switch
+                android:id="@+id/switchClasses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="Show classes" />
+            <Switch
+                android:id="@+id/switchMenus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="Show menus" />
+            <Switch
+                android:id="@+id/switchPasstimes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="Show pass times" />
+            <Switch
+                android:id="@+id/switchMainBg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="Show Background" />
+            <Switch
+                android:id="@+id/switchMainBgColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="Dark Background" />
+
+
+            <Switch
+                android:id="@+id/switchFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="Use Dark Font for Body" />
+            <Switch
+                android:id="@+id/switchFont2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="Use Dark Font for Header" />
+
+            <Switch
+                android:id="@+id/switchBackgrounds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:paddingTop="20dp"
+                android:paddingBottom="50dp"
+                android:text="Hide Colored Backgrounds" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
